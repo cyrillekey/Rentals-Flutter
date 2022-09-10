@@ -1,3 +1,4 @@
+import 'package:chekikeja/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
+              height: MediaQuery.of(context).size.height * .01,
             ),
             TextButton(
               onPressed: () {},
@@ -61,8 +62,8 @@ class OnboardingScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
-            const SizedBox(
-              height: 2,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .04,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * .7,
@@ -74,7 +75,10 @@ class OnboardingScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.grey),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
+                      },
                       child: const Text(
                         "Login",
                         style: TextStyle(color: Colors.black),
