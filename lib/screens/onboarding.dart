@@ -23,7 +23,7 @@ class OnboardingScreen extends StatelessWidget {
                       image: AssetImage("assets/images/house.jpg"))),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
+              height: MediaQuery.of(context).size.height * .05,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * .90,
@@ -33,8 +33,8 @@ class OnboardingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .01,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
@@ -44,8 +44,8 @@ class OnboardingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .04,
             ),
             TextButton(
               onPressed: () {},
@@ -62,7 +62,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 2,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * .7,
