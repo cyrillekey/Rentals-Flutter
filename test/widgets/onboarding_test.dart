@@ -15,4 +15,8 @@ void main() {
     await widgetTester.pumpWidget(createWidgetUnderTest());
     expect(find.textContaining("Your Dream House"), findsOneWidget);
   });
+  testWidgets("Subtitle Shown", (WidgetTester widgetTester) async {
+    await widgetTester.pumpWidget(createWidgetUnderTest());
+    expect(find.textContaining("searching and finding"), findsOneWidget);
+  });
 }
