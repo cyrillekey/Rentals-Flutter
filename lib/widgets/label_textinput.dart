@@ -35,9 +35,15 @@ Widget labelTextInput(String label, TextEditingController controller,
             validator: validator,
             decoration: InputDecoration(
               suffix: suffix,
-              border: const OutlineInputBorder(),
-              enabledBorder: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(),
+              border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12)),
             ),
           ),
         )

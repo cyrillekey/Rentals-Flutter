@@ -1,10 +1,11 @@
+import 'package:chekikeja/widgets/icon_button.dart';
 import 'package:chekikeja/widgets/label_textinput.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final TextEditingController emailConroller = TextEditingController();
-
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,20 +27,106 @@ class LoginScreen extends StatelessWidget {
             child: const Text("Hello again, you've been missed"),
           ),
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
           labelTextInput("Email", emailConroller,
               textInputType: TextInputType.emailAddress,
               width: MediaQuery.of(context).size.width * .95),
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
-          labelTextInput("Password", emailConroller,
+          labelTextInput("Password", passwordController,
               width: MediaQuery.of(context).size.width * .95,
               obscureTexxt: true,
               textInputType: TextInputType.visiblePassword,
               suffix: IconButton(
                   onPressed: () {}, icon: const Icon(Icons.remove_red_eye))),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 5, right: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(children: [
+                  Checkbox(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                    value: false,
+                    onChanged: (value) {},
+                  ),
+                  const Text("Remeber Me")
+                ]),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(color: Colors.red),
+                    ))
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          UnconstrainedBox(
+            child: TextButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12))),
+                  fixedSize: MaterialStateProperty.all<Size>(
+                      Size(MediaQuery.of(context).size.width * .9, 60)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromRGBO(0, 114, 109, 1))),
+              child: const Text(
+                "Login",
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: Container(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: const Divider())),
+              const Text("Or Login In with"),
+              Expanded(
+                  child: Container(
+                      padding: const EdgeInsets.only(left: 10, right: 20),
+                      child: const Divider()))
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              iconButton(() {}, Icons.facebook, "Facebook"),
+              iconButton(() {}, Icons.g_mobiledata, "Google")
+            ],
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          UnconstrainedBox(
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  const Text("Dont have an account?"),
+                  TextButton(onPressed: () {}, child: const Text("Signup"))
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
