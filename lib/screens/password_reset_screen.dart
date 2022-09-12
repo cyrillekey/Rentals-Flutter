@@ -1,10 +1,10 @@
-import 'package:chekikeja/screens/signup_screen.dart';
+import 'package:chekikeja/screens/login_screen.dart';
 import 'package:chekikeja/widgets/icon_button.dart';
 import 'package:chekikeja/widgets/label_textinput.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class PasswordReset extends StatelessWidget {
+  PasswordReset({super.key});
   final TextEditingController emailConroller = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
           Container(
               padding: const EdgeInsets.only(left: 20),
               child: const Text(
-                "Hi,Welcome Back!👋",
+                "Create Account",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
                 textAlign: TextAlign.left,
               )),
@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.only(left: 20),
-            child: const Text("Hello again, you've been missed"),
+            child: const Text("Join And Find Your Dream House"),
           ),
           const SizedBox(
             height: 30,
@@ -34,7 +34,13 @@ class LoginScreen extends StatelessWidget {
               textInputType: TextInputType.emailAddress,
               width: MediaQuery.of(context).size.width * .95),
           const SizedBox(
-            height: 10,
+            height: 5,
+          ),
+          labelTextInput("Phone Number", emailConroller,
+              textInputType: TextInputType.phone,
+              width: MediaQuery.of(context).size.width * .95),
+          const SizedBox(
+            height: 5,
           ),
           labelTextInput("Password", passwordController,
               width: MediaQuery.of(context).size.width * .95,
@@ -43,7 +49,7 @@ class LoginScreen extends StatelessWidget {
               suffix: IconButton(
                   onPressed: () {}, icon: const Icon(Icons.remove_red_eye))),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Container(
             padding: const EdgeInsets.only(left: 5, right: 15),
@@ -57,19 +63,13 @@ class LoginScreen extends StatelessWidget {
                     value: false,
                     onChanged: (value) {},
                   ),
-                  const Text("Remeber Me")
+                  const Text("I agree to terms and conditions.")
                 ]),
-                TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forgot Password?",
-                      style: TextStyle(color: Colors.red),
-                    ))
               ],
             ),
           ),
           const SizedBox(
-            height: 40,
+            height: 20,
           ),
           UnconstrainedBox(
             child: TextButton(
@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromRGBO(0, 114, 109, 1))),
               child: const Text(
-                "Login",
+                "Signup",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
@@ -97,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                   child: Container(
                       padding: const EdgeInsets.only(left: 20, right: 10),
                       child: const Divider())),
-              const Text("Or Login In with"),
+              const Text("Or Signup with"),
               Expanded(
                   child: Container(
                       padding: const EdgeInsets.only(left: 10, right: 20),
@@ -105,7 +105,7 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 40,
+            height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -115,23 +115,23 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 50,
+            height: 40,
           ),
           UnconstrainedBox(
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Row(
                 children: [
-                  const Text("Dont have an account?"),
+                  const Text("Already have an account?"),
                   TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignupScreen()));
+                                builder: (context) => LoginScreen()));
                       },
                       child: const Text(
-                        "Signup",
+                        "Login",
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w600),
                       ))
