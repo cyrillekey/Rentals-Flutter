@@ -1,7 +1,10 @@
+import 'package:chekikeja/screens/mainscreen.dart';
 import 'package:chekikeja/screens/signup_screen.dart';
 import 'package:chekikeja/widgets/icon_button.dart';
 import 'package:chekikeja/widgets/label_textinput.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:line_icons/line_icons.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -73,7 +76,12 @@ class LoginScreen extends StatelessWidget {
           ),
           UnconstrainedBox(
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainScreen(index: 0)));
+              },
               style: ButtonStyle(
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
@@ -110,8 +118,8 @@ class LoginScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              iconButton(() {}, Icons.facebook, "Facebook"),
-              iconButton(() {}, Icons.g_mobiledata, "Google")
+              iconButton(() {}, FontAwesomeIcons.facebook, "Facebook"),
+              iconButton(() {}, LineIcons.googleLogo, "Google")
             ],
           ),
           const SizedBox(
