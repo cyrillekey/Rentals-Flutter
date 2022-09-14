@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chekikeja/widgets/featured_house.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -130,12 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 10,
         ),
         Container(
-          decoration: BoxDecoration(border: Border.all()),
           height: 200,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Text("Testing");
+                return FeaturedHouse(context);
               }),
         ),
         const SizedBox(
