@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
         elevation: 0,
         iconSize: 28,
         padding: const EdgeInsets.symmetric(vertical: 12),
-        margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         onTap: (index) {
           setState(() {
             currentSelection = index;
@@ -54,7 +54,8 @@ class _MainScreenState extends State<MainScreen> {
           FloatingNavbarItem(icon: Icons.circle)
         ],
       ),
-      body: SizedBox(
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: widget.widgets[currentSelection],
