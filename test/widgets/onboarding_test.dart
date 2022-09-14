@@ -19,4 +19,8 @@ void main() {
     await widgetTester.pumpWidget(createWidgetUnderTest());
     expect(find.textContaining("searching and finding"), findsOneWidget);
   });
+  testWidgets("Buttons Rendered", (widgetTester) async {
+    await widgetTester.pumpWidget(createWidgetUnderTest());
+    expect(find.byType(TextButton), findsNWidgets(2));
+  });
 }
