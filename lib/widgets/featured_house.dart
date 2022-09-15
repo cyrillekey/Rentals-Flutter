@@ -8,9 +8,9 @@ Widget FeaturedHouse(BuildContext context) {
     child: Column(
       children: [
         BannerCarousel(
-          margin: EdgeInsets.symmetric(horizontal: 2),
+          margin: const EdgeInsets.symmetric(horizontal: 2),
           height: 180,
-          customizedIndicators: IndicatorModel.animation(
+          customizedIndicators: const IndicatorModel.animation(
               width: 10, height: 10, spaceBetween: 2, widthAnimation: 10),
           width: MediaQuery.of(context).size.width,
           indicatorBottom: false,
