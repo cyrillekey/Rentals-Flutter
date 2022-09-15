@@ -130,12 +130,13 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(
           height: 10,
         ),
-        Container(
-          height: 200,
+        SizedBox(
+          height: 280,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return FeaturedHouse(context);
+                return featuredHouse(context, "552 Brodaveny sute sssd",
+                    "1 Bedroom", "12000000", "12200000", "1464");
               }),
         ),
         const SizedBox(

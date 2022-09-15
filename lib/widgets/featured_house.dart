@@ -1,32 +1,135 @@
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 
-Widget FeaturedHouse(BuildContext context) {
-  return SizedBox(
-    width: MediaQuery.of(context).size.width * .85,
-    height: 180,
-    child: Column(
-      children: [
-        BannerCarousel(
-          margin: const EdgeInsets.symmetric(horizontal: 2),
-          height: 180,
-          customizedIndicators: const IndicatorModel.animation(
-              width: 10, height: 10, spaceBetween: 2, widthAnimation: 10),
-          width: MediaQuery.of(context).size.width,
-          indicatorBottom: false,
-          activeColor: Colors.amberAccent,
-          disableColor: Colors.white,
-          animation: true,
-          borderRadius: 10,
-          banners: [
-            BannerModel(imagePath: "assets/images/house.jpg", id: "1"),
-            BannerModel(
-                imagePath:
-                    "assets/images/modern-house-patio-functional-outdoor-600w-1014119716.webp",
-                id: "2")
-          ],
-        )
-      ],
-    ),
+Widget featuredHouse(BuildContext context, String title, String bedrooms,
+    String price, String discountedPrice, String sqft) {
+  return Stack(
+    children: [
+      Positioned(
+          top: 6,
+          right: 0,
+          child: CircleAvatar(
+            backgroundColor: Colors.red,
+          )),
+      SizedBox(
+        width: MediaQuery.of(context).size.width * .85,
+        height: 280,
+        child: Card(
+          color: null,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          elevation: 0,
+          child: Column(
+            children: [
+              BannerCarousel(
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                height: 180,
+                customizedIndicators: const IndicatorModel.animation(
+                    width: 10, height: 10, spaceBetween: 2, widthAnimation: 10),
+                width: MediaQuery.of(context).size.width,
+                indicatorBottom: false,
+                activeColor: Colors.amberAccent,
+                disableColor: Colors.white,
+                animation: true,
+                borderRadius: 10,
+                banners: [
+                  BannerModel(imagePath: "assets/images/house.jpg", id: "1"),
+                  BannerModel(
+                      imagePath:
+                          "assets/images/modern-house-patio-functional-outdoor-600w-1014119716.webp",
+                      id: "2")
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .55,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 105,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(
+                                    Icons.bed,
+                                    size: 26,
+                                    color: Colors.grey,
+                                  ),
+                                  Text(
+                                    bedrooms,
+                                    style: const TextStyle(
+                                        color: Colors.grey, fontSize: 15),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(
+                                    Icons.bed,
+                                    size: 26,
+                                    color: Colors.grey,
+                                  ),
+                                  Text(
+                                    sqft,
+                                    style: const TextStyle(
+                                        color: Colors.grey, fontSize: 15),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [Text("Houser"), Text("Rents")],
+                        )
+                      ],
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        discountedPrice,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        price,
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
   );
 }
