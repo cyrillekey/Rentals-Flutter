@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:chekikeja/widgets/featured_house.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:line_icons/line_icons.dart';
+
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Container(
           width: MediaQuery.of(context).size.width,
@@ -88,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         // TextFormField(
         //   decoration: InputDecoration(
@@ -128,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         SizedBox(
           height: 300,

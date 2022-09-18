@@ -7,7 +7,7 @@ Widget featuredHouse(BuildContext context, String title, String bedrooms,
     width: MediaQuery.of(context).size.width * .85,
     height: 280,
     child: Card(
-      color: null,
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 0,
       child: Column(
@@ -77,23 +77,23 @@ Widget featuredHouse(BuildContext context, String title, String bedrooms,
                               ],
                             ),
                           ),
-                          SizedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Icon(
-                                  Icons.bed,
-                                  size: 26,
-                                  color: Colors.grey,
-                                ),
-                                Text(
-                                  sqft,
-                                  style: const TextStyle(
-                                      color: Colors.grey, fontSize: 15),
-                                )
-                              ],
-                            ),
-                          )
+                          // SizedBox(
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       const Icon(
+                          //         Icons.bed,
+                          //         size: 26,
+                          //         color: Colors.grey,
+                          //       ),
+                          //       Text(
+                          //         sqft,
+                          //         style: const TextStyle(
+                          //             color: Colors.grey, fontSize: 15),
+                          //       )
+                          //     ],
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
@@ -101,7 +101,11 @@ Widget featuredHouse(BuildContext context, String title, String bedrooms,
                       height: 5,
                     ),
                     Row(
-                      children: [Text("Houser"), Text("Rents")],
+                      children: [
+                        TagsItem("Houser"),
+                        TagsItem("Rents"),
+                        TagsItem("Rent")
+                      ],
                     )
                   ],
                 ),
@@ -135,4 +139,8 @@ Widget featuredHouse(BuildContext context, String title, String bedrooms,
       ),
     ),
   );
+}
+
+Widget TagsItem(String title) {
+  return Wrap();
 }
