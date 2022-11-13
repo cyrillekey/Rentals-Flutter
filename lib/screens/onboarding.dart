@@ -1,6 +1,7 @@
 import 'package:chekikeja/screens/login_screen.dart';
 import 'package:chekikeja/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -58,8 +59,7 @@ class OnboardingScreen extends StatelessWidget {
             UnconstrainedBox(
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()));
+                  Get.toNamed("/signup");
                 },
                 style: ButtonStyle(
                     backgroundColor:
@@ -88,8 +88,7 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                        Get.toNamed("/login");
                       },
                       child: const Text(
                         "Login",

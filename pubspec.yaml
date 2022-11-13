@@ -53,6 +53,11 @@ dependencies:
   line_icons: ^2.0.1
   loading_animation_widget: ^1.2.0+3
   shimmer: ^2.0.0
+  banner_carousel: ^1.2.1
+  auth_buttons: ^3.0.0
+  google_fonts: ^3.0.1
+  get: ^4.6.5
+
 
 dev_dependencies:
   flutter_test:
