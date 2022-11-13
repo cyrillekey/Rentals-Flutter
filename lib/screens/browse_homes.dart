@@ -5,9 +5,24 @@ class BrowseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: const Text("Browser"),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ListView(
+        children: [
+          const SizedBox(
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Text(
+                "Chekikeja",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

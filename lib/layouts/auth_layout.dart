@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:auth_buttons/auth_buttons.dart';
 import 'package:chekikeja/constants/sizes.dart';
+import 'package:chekikeja/screens/password_reset_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:get/route_manager.dart';
 
 class AuthenticationLayout extends StatelessWidget {
   final String title;
@@ -10,11 +14,13 @@ class AuthenticationLayout extends StatelessWidget {
   final bool showTermsText;
   final VoidCallback? onMainButtonTapped;
   final VoidCallback? onCreateAccountTapped;
-  final VoidCallback? onForgetPasswordTapped;
+
   final VoidCallback? onBackPressed;
   final String? validationMessage;
   final bool onForgotPassword;
   final bool busy;
+  final String sublinktext;
+  final String sublinktext2;
   const AuthenticationLayout(
       {super.key,
       required this.title,
@@ -24,11 +30,12 @@ class AuthenticationLayout extends StatelessWidget {
       this.showTermsText = false,
       required this.onMainButtonTapped,
       required this.onCreateAccountTapped,
-      required this.onForgetPasswordTapped,
       this.onBackPressed,
       this.validationMessage,
       this.busy = false,
-      this.onForgotPassword = false});
+      this.onForgotPassword = false,
+      required this.sublinktext,
+      required this.sublinktext2});
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +49,24 @@ class AuthenticationLayout extends StatelessWidget {
             IconButton(
                 padding: EdgeInsets.zero,
                 alignment: Alignment.centerLeft,
-                onPressed: onBackPressed,
+                onPressed: () {
+                  Get.back();
+                },
                 icon: const Icon(Icons.arrow_back_ios)),
+          verticalSpaceTiny,
           Text(
             title,
             style: const TextStyle(fontSize: 34),
           ),
           verticalSpaceSmall,
-          SizedBox(
-            width: screenWidthPercentage(context, percentage: .7),
-            child: Text(
-              subtitle,
-              style: ktsMediumGreyBodyText,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: screenWidthPercentage(context, percentage: .7),
+              child: Text(
+                subtitle,
+                style: ktsMediumGreyBodyText,
+              ),
             ),
           ),
           verticalSpaceRegular,
@@ -63,9 +76,11 @@ class AuthenticationLayout extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
-                onTap: onForgetPasswordTapped,
+                onTap: () {
+                  Get.toNamed("/password");
+                },
                 child: Text(
-                  "Forget Password",
+                  "Forgot Password ?",
                   style: ktsMediumGreyBodyText.copyWith(
                       fontWeight: FontWeight.bold),
                 ),
@@ -88,8 +103,7 @@ class AuthenticationLayout extends StatelessWidget {
                     color: kcPrimaryColor,
                     borderRadius: BorderRadius.circular(8)),
                 child: busy
-                    ? LoadingAnimationWidget.newtonCradle(
-                        color: Colors.white, size: 72)
+                    ? CircularProgressIndicator()
                     : Text(
                         mainButtonTitle,
                         style: const TextStyle(
@@ -104,22 +118,56 @@ class AuthenticationLayout extends StatelessWidget {
               onTap: onCreateAccountTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Don't have an account"),
+                children: [
+                  Text(sublinktext),
                   horizontalSpaceTiny,
                   Text(
-                    "Create Account",
+                    sublinktext2,
                     style: TextStyle(color: kcPrimaryColor),
                   ),
                 ],
               ),
             ),
+          verticalSpaceRegular,
+          if (Platform.isIOS)
+            AppleAuthButton(
+              onPressed: () {},
+              text: "CONTINUE WITH APPLE",
+              style: const AuthButtonStyle(
+                  iconSize: 24,
+                  height: 50,
+                  textStyle: TextStyle(color: Colors.white),
+                  buttonType: AuthButtonType.secondary),
+            ),
+          verticalSpaceRegular,
+          GoogleAuthButton(
+            onPressed: () {},
+            text: "CONTINUE WITH GOOGLE",
+            style: const AuthButtonStyle(
+                buttonColor: Color(0xff4285f4),
+                iconSize: 24,
+                iconBackground: Colors.white,
+                buttonType: AuthButtonType.secondary,
+                height: 50,
+                textStyle: TextStyle(color: Colors.white)),
+          ),
+          verticalSpaceRegular,
+          FacebookAuthButton(
+            onPressed: () {},
+            text: "CONTINUE WITH GOOGLE",
+            style: const AuthButtonStyle(
+                iconSize: 24,
+                buttonType: AuthButtonType.secondary,
+                height: 50,
+                textStyle: TextStyle(color: Colors.white)),
+          ),
+          verticalSpaceMedium,
           if (showTermsText)
             const Text(
               "By signing up you agree to our terms, conditions and privacy Policy.",
               style: ktsMediumGreyBodyText,
               textAlign: TextAlign.center,
-            )
+            ),
         ],
       ),
     );
