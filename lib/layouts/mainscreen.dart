@@ -14,7 +14,7 @@ class MainScreen extends StatefulWidget {
   final List widgets = [
     const HomeScreen(),
     const SearchScreen(),
-    const BrowseScreen(),
+    BrowseScreen(),
     const SettingsScreen()
   ];
   @override
