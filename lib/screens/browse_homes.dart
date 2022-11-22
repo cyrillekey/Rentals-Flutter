@@ -29,24 +29,61 @@ class BrowseScreen extends StatelessWidget {
             ],
           ),
           verticalSpaceSmall,
-          InkWell(
-            onTap: () {
-              // Get.bottomSheet(Container(
-              //   color: Colors.white,
-              //   child: ListView(
-              //     children: [
-              //       ListTile(
-              //         title: Text("Example"),
-              //       )
-              //     ],
-              //   ),
-              // ));
-              Get.showSnackbar(GetSnackBar(
-                title: "Exmape",
-                message: "Example snaabar",
-              ));
-            },
-            child: Text("Search Button will go here"),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                Expanded(
+                    child: Container(
+                  height: 40,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search Houses',
+                        hintStyle: TextStyle(fontSize: 12),
+                        contentPadding: EdgeInsets.only(
+                            left: 10, right: 10, bottom: 10, top: 5),
+                        prefix: Icon(
+                          Icons.search,
+                          color: Colors.black54,
+                        )),
+                  ),
+                )),
+                const SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () => {
+                    Get.bottomSheet(Container(
+                      height: 200,
+                      color: Colors.white,
+                      width: MediaQuery.of(context).size.width,
+                    ))
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(13)),
+                        color: Theme.of(context).backgroundColor,
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color(0xfff8f8f8),
+                              blurRadius: 10,
+                              spreadRadius: 15)
+                        ]),
+                    child: const Icon(
+                      Icons.filter_list,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 35,
