@@ -12,9 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: cat android/app/google-services.json | base64
+      - run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
       - run: |
-          echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.json
-          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/key.properties
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
           echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
           gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
       - uses: actions/checkout@v1
