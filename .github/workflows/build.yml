@@ -6,12 +6,17 @@ on:
     types:
       - completed
   push:
-    branches:
-    - "develop"
+    branches: ["develop"]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Create Google Json File
+        run: touch android/app/google-services.json
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICE }}
+        run: echo $DATA > /android/app/google-services.json
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
