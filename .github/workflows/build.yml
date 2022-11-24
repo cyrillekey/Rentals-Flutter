@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'  
       - uses: actions/checkout@v2
       - run: |
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
@@ -41,3 +45,10 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           body: "Staging Release APK"
+      - name: Distribute Android Beta App
+        working-directory: ${{ github.workspace }}/android
+        run: bundle exec fastlane distribute_android_app
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
+          BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
