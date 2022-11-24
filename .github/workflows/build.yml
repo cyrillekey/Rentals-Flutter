@@ -19,7 +19,7 @@ jobs:
       - name: Copy goole servives
         run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
       - name: Copy to runner 
-        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.jso
+        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.json
       - name: Check if file was copied
         run: cat /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.json
       - run: |
