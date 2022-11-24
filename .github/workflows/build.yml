@@ -20,10 +20,11 @@ jobs:
         env:
           DATA: ${{ secrets.GOOGLE_SERVICE }}
         run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
-      - uses: petr-pokorny-1/create-file-action@v1
+      - uses: du5rte/create-secrets-file@v1
         with:
-          filePath: android/app/google-services.json
-          content: $DATA
+          secrets: $DATA
+          file: google-services.json
+          path: android/app/    
       - run: |
           cat android/app/google-services.json
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
