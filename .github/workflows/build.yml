@@ -21,7 +21,7 @@ jobs:
           DATA: ${{ secrets.GOOGLE_SERVICE }}
         run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
 
-      - uses: petr-pokorny-1/create-file-action@v4
+      - uses: petr-pokorny-1/create-file-action
         with:
           filePath: android/app/google-services.json
           content: $DATA
