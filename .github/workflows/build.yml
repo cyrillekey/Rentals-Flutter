@@ -19,7 +19,7 @@ jobs:
       - name: Copy goole servives
         env:
           DATA: ${{ secrets.GOOGLE_SERVICE }}
-        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
+        run: cat "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
       - uses: du5rte/create-secrets-file@v1
         with:
           secrets: $DATA
