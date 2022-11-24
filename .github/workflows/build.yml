@@ -11,8 +11,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Create Google Json File
+        run: touch android/app/google-services.json
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICE }}
+        run: echo $DATA > /android/app/google-services.json
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'  
       - uses: actions/checkout@v2
-      - run: touch android/app/google-services.json && echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
       - run: |
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
           echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
@@ -41,3 +50,10 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           body: "Staging Release APK"
+      - name: Distribute Android Beta App
+        working-directory: ${{ github.workspace }}/android
+        run: bundle exec fastlane distribute_android_app
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
+          BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
