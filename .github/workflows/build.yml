@@ -16,13 +16,9 @@ jobs:
         with:
           ruby-version: '2.7'  
       - uses: actions/checkout@v2
-      - name: Copy goole servives
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICE }}
-        run: cat "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
       - uses: du5rte/create-secrets-file@v1
         with:
-          secrets: $DATA
+          secrets: ${{ secrets.GOOGLE_SERVICE }}
           file: google-services.json
           path: android/app/    
       - run: |
