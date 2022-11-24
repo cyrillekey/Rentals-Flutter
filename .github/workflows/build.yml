@@ -17,13 +17,16 @@ jobs:
           ruby-version: '2.7'  
       - uses: actions/checkout@v2
       - name: Copy goole servives
-        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
-      - uses: 1arp/create-a-file-action@0.2
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICE }}
+        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > $DATA
+
+      - uses: petr-pokorny-1/create-file-action@v4
         with:
-          path: 'android/app'
-          file: 'google-services.json'
-          content: ${{ secrets.GOOGLE_SERVICE }}
+          filePath: android/app/google-services.json
+          content: $DATA
       - run: |
+          cat android/app/google-services.json
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
           echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
           gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
