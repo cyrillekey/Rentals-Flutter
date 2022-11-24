@@ -16,12 +16,10 @@ jobs:
         with:
           ruby-version: '2.7'  
       - uses: actions/checkout@v2
-      - uses: du5rte/create-secrets-file@v1
-        with:
-          secrets: |
-            ${{ secrets.GOOGLE_SERVICE }}
-          file: google-services.json
-          path: android/app/    
+      - uses: "finnp/create-file-action@master"
+        env:
+          FILE_NAME: "android/app/google-services.json"
+          FILE_BASE64: "${{ secrets.GOOGLE_SERVICE }}"
       - run: |
           cat android/app/google-services.json
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
