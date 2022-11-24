@@ -1,10 +1,10 @@
 name: Flutter build
 
 on:
-  workflow_run:
-    workflows: ["Flutter CI"]
-    types:
-      - completed
+#   workflow_run:
+#     workflows: ["Flutter CI"]
+#     types:
+#       - completed
   push:
     branches: ["develop"]
 jobs:
@@ -18,40 +18,42 @@ jobs:
       - uses: actions/checkout@v2
       - name: Copy goole servives
         run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
+      - name: Copy to runner 
+        run: echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.jso
       - name: Check if file was copied
-        run: cat android/app/google-services.json
-      - run: |
-          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
-          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
-          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
-      - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.3.0'
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build apk --release
-      - uses: actions/upload-artifact@v1
-        with:
-          name: staging-release-apk
-          path: build/app/outputs/apk/dev/release/app-dev-release.apk
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/app/outputs/apk/dev/release/app-dev-release.apk
-          asset_name: staging-release
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: "Staging Release APK"
-      - name: Distribute Android Beta App
-        working-directory: ${{ github.workspace }}/android
-        run: bundle exec fastlane distribute_android_app
-        env:
-          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
-          BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
+        run: cat /home/runner/work/Rentals-Flutter/Rentals-Flutter/android/app/google-services.json
+#       - run: |
+#           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
+#           echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
+#           gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
+#       - uses: actions/checkout@v1
+#       - uses: actions/setup-java@v1
+#         with:
+#           java-version: '12.x'
+#       - uses: actions/checkout@v3
+#       - uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: '3.3.0'
+#           channel: 'stable'
+#       - run: flutter pub get
+#       - run: flutter build apk --release
+#       - uses: actions/upload-artifact@v1
+#         with:
+#           name: staging-release-apk
+#           path: build/app/outputs/apk/dev/release/app-dev-release.apk
+#       - name: Upload binaries to release
+#         uses: svenstaro/upload-release-action@v2
+#         with:
+#           repo_token: ${{ secrets.GITHUB_TOKEN }}
+#           file: build/app/outputs/apk/dev/release/app-dev-release.apk
+#           asset_name: staging-release
+#           tag: ${{ github.ref }}
+#           overwrite: true
+#           body: "Staging Release APK"
+#       - name: Distribute Android Beta App
+#         working-directory: ${{ github.workspace }}/android
+#         run: bundle exec fastlane distribute_android_app
+#         env:
+#           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+#           FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
+#           BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
