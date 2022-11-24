@@ -18,7 +18,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: du5rte/create-secrets-file@v1
         with:
-          secrets: ${{ secrets.GOOGLE_SERVICE }}
+          secrets: |
+            ${{ secrets.GOOGLE_SERVICE }}
           file: google-services.json
           path: android/app/    
       - run: |
