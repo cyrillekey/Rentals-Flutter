@@ -1,10 +1,10 @@
 name: Flutter build
 
 on:
-#   workflow_run:
-#     workflows: ["Flutter CI"]
-#     types:
-#       - completed
+  workflow_run:
+    workflows: ["Flutter CI"]
+    types:
+      - completed
   push:
     branches: ["develop","master"]
 jobs:
