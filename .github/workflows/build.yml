@@ -46,9 +46,15 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           body: "Staging Release APK"
+      - name: Setup fastlane
+        id: set_up_fastlane
+        run: |
+          gem install bundler:1.17.2
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3    
       - name: Distribute Android Beta App
         working-directory: ${{ github.workspace }}/android
-        run: bundle exec fastlane distribute_android_app
+        run: bundle exec fastlane distribute_beta
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
           FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
