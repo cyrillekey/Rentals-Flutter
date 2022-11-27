@@ -15,16 +15,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7'  
-      - uses: actions/checkout@v2
-      - uses: "finnp/create-file-action@master"
-        env:
-          FILE_NAME: "android/app/google-services.json"
-          FILE_BASE64: "${{ secrets.GOOGLE_SERVICE }}"
-      - run: |
-          cat android/app/google-services.json
-          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
-          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
-          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
         with:
@@ -35,7 +25,14 @@ jobs:
           flutter-version: '3.3.0'
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter build apk --release
+      - run: |
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/app/key.properties
+          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
+          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
+          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
+          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
+          flutter build apk --release
       - uses: actions/upload-artifact@v1
         with:
           name: staging-release-apk
