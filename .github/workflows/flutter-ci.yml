@@ -9,7 +9,7 @@ on:
   push:
     branches: [ "develop","master","staging" ]
   pull_request:
-    branches: [ "develop", "staging" ]
+    branches: [ "develop", "staging" ,"master"]
 jobs:
   verify-code:
     runs-on: ubuntu-latest
