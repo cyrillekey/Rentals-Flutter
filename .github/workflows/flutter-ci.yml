@@ -7,9 +7,9 @@ name: Flutter CI
 
 on:
   push:
-    branches: [ "develop","master" ]
+    branches: [ "develop","master","staging" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "staging" ]
 jobs:
   build:
     runs-on: ubuntu-latest
