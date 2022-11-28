@@ -6,7 +6,7 @@ on:
     types:
       - completed
   push:
-    branches: ["staging","master"]
+    branches: ["staging"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,16 +32,16 @@ jobs:
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
           echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
           gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
-          flutter build apk --release
+          flutter build apk --flavor=staging -t lib/main_staging.dart --release
       - uses: actions/upload-artifact@v1
         with:
           name: staging-release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          path: build/app/outputs/apk/staging/release/app-staging-release.apk
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/app/outputs/apk/release/app-release.apk
+          file: build/app/outputs/apk/staging/release/app-staging-release.apk
           asset_name: staging-release
           tag: ${{ github.ref }}
           overwrite: true
