@@ -71,6 +71,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.2.0
+  flutter_flavorizr: ^2.1.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -112,3 +114,28 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    prod:
+      app:
+        name: "Chekikeja"
+
+      android:
+        applicationId: "com.example.chekikeja"
+
+      ios:
+        bundleId: "com.example.chekikeja"
+
+    staging:
+      app:
+        name: "Chekikeja Staging"
+
+      android:
+        applicationId: "com.example.chekikeja"
+      ios:
+        bundleId: "com.example.chekikeja"
