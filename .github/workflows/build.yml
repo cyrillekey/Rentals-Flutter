@@ -6,7 +6,7 @@ on:
     types:
       - completed
   push:
-    branches: ["develop","master"]
+    branches: ["staging"]
 jobs:
   build:
     runs-on: ubuntu-latest
