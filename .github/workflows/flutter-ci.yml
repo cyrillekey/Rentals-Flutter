@@ -9,13 +9,13 @@ on:
   push:
     branches: [ "develop","master","staging" ]
   pull_request:
-    branches: [ "develop", "staging" ]
+    branches: [ "develop", "staging" ,"master"]
 jobs:
   verify-code:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: subosito/flutter-action@v2
+    - uses: subosito/flutter-action@v2.6.1
       with:
         flutter-version: '3.3.0'
         channel: 'stable'
