@@ -58,8 +58,9 @@ dependencies:
   google_fonts: ^3.0.1
   get: ^4.6.5
   flutter_tags: ^1.0.0-nullsafety.1
-
-
+  google_sign_in: ^5.4.2
+  twitter_login: ^4.2.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

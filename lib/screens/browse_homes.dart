@@ -28,14 +28,14 @@ class BrowseScreen extends StatelessWidget {
               )
             ],
           ),
-          verticalSpaceSmall,
+          verticalSpaceRegular,
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               children: [
                 Expanded(
                     child: Container(
-                  height: 40,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade200,
@@ -43,15 +43,12 @@ class BrowseScreen extends StatelessWidget {
                           const BorderRadius.all(Radius.circular(10))),
                   child: const TextField(
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Search Houses',
-                        hintStyle: TextStyle(fontSize: 12),
-                        contentPadding: EdgeInsets.only(
-                            left: 10, right: 10, bottom: 10, top: 5),
-                        prefix: Icon(
-                          Icons.search,
-                          color: Colors.black54,
-                        )),
+                      border: InputBorder.none,
+                      hintText: 'Search Houses',
+                      hintStyle: TextStyle(fontSize: 12),
+                      contentPadding: EdgeInsets.only(
+                          left: 10, right: 10, bottom: 10, top: 5),
+                    ),
                   ),
                 )),
                 const SizedBox(
@@ -93,7 +90,7 @@ class BrowseScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
             ),
           ),
-          verticalSpaceRegular,
+          verticalSpaceSmall,
           const Text(
             'Listings',
             style: TextStyle(fontSize: 19, fontWeight: FontWeight.w800),

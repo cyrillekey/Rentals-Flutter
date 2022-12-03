@@ -14,22 +14,22 @@ class Notifications extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           children: [
-            verticalSpaceMedium,
+            verticalSpaceRegular,
+            verticalSpaceRegular,
             ListTile(
               leading: InkWell(
                 onTap: () => Get.back(),
                 child: const Icon(
                   Icons.arrow_back_ios,
-                  size: 30,
+                  size: 24,
                 ),
               ),
               iconColor: Colors.black,
               title: const Text(
                 "Notifications",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
             ),
-            verticalSpaceRegular,
             RefreshIndicator(
               color: Colors.black,
               onRefresh: () async {
@@ -56,7 +56,7 @@ class Notifications extends StatelessWidget {
       InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Column(
             children: [
               Row(
