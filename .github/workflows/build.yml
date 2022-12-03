@@ -1,12 +1,8 @@
 name: Flutter build
 
 on:
-  workflow_run:
-    workflows: ["Flutter CI"]
-    types:
-      - completed
   push:
-    branches: ["develop","master"]
+    branches: ["staging"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,10 +42,16 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           body: "Staging Release APK"
-      # - name: Distribute Android Beta App
-      #   working-directory: ${{ github.workspace }}/android
-      #   run: bundle exec fastlane distribute_android_app
-      #   env:
-      #     FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-      #     FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
-      #     BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
+      - name: Setup fastlane
+        id: set_up_fastlane
+        run: |
+          gem install bundler:1.17.2
+     # - name: Distribute Android Beta App
+     #   working-directory: ${{ github.workspace }}/android
+     #   run: |
+     #     fastlane add_plugin firebase_app_distribution
+     #     bundle exec fastlane distribute_beta
+     #   env:
+     #     FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+     #     FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
+     #     BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}    
