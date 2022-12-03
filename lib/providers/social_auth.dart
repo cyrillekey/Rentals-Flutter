@@ -1,5 +1,6 @@
 import 'package:chekikeja/locator/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:twitter_login/twitter_login.dart';
 
@@ -8,9 +9,9 @@ class SocialAuth {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final twitterLogin = TwitterLogin(
-    apiKey: 'liZzwPfEHCM9icoHCBPiYIZek',
-    apiSecretKey: 'SrVx1ig04omeIGn168zXK0PqhZ0yhjlEss7Ygt9jmGUqs3WaFz',
-    redirectURI: 'https://chekikeja-33bf3.firebaseapp.com/__/auth/handler',
+    apiKey: dotenv.env['TWITTER_CLIENT_API_KEY']!,
+    apiSecretKey: dotenv.env['TWITTER_CLIENT_SECRET']!,
+    redirectURI: dotenv.env['TWITTER_CLIENT_CALLBACK']!,
   );
   Future<User?> signupWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount =
