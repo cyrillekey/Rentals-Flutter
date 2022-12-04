@@ -57,8 +57,8 @@ dependencies:
   auth_buttons: ^3.0.0
   google_fonts: ^3.0.1
   get: ^4.6.5
-  flutter_tags: ^1.0.0-nullsafety.1
-
+  google_maps_flutter: ^2.2.1
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
