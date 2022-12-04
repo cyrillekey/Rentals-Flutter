@@ -1,10 +1,10 @@
 import 'package:chekikeja/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 class HouseDetails extends StatelessWidget {
   const HouseDetails({super.key});
@@ -27,7 +27,7 @@ class HouseDetails extends StatelessWidget {
                   child: const Icon(Icons.arrow_back),
                 ),
                 const Text(
-                  "Details",
+                  'Details',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 const Icon(Icons.favorite)
@@ -40,7 +40,7 @@ class HouseDetails extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   image: const DecorationImage(
-                      image: AssetImage("assets/images/house.jpg"),
+                      image: AssetImage('assets/images/house.jpg'),
                       fit: BoxFit.cover)),
             ),
             verticalSpaceMedium,
@@ -57,8 +57,44 @@ class HouseDetails extends StatelessWidget {
                 )),
             verticalSpaceMedium,
             const Text(
-              "552 Brandon Ave, Winnipwg, MB R3L oT9",
+              'Harmony Studio',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            verticalSpaceSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                RatingBarIndicator(
+                    rating: 3.5,
+                    unratedColor: Colors.grey,
+                    itemSize: 24,
+                    itemBuilder: (context, index) => Icon(
+                          Icons.star,
+                          color: Colors.yellow.shade600,
+                        )),
+                horizontalSpaceSmall,
+                const Text(
+                  '4.8',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                horizontalSpaceTiny,
+                const Text(
+                  'Based on 45 Reviews',
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
+            ),
+            verticalSpaceSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Icon(FontAwesomeIcons.locationPin),
+                horizontalSpaceTiny,
+                Text(
+                  '56 west avenue mano',
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                )
+              ],
             ),
             verticalSpaceRegular,
             SizedBox(
@@ -69,7 +105,7 @@ class HouseDetails extends StatelessWidget {
                   return Container(
                     margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
-                        color: Color.fromRGBO(247, 247, 247, 1.0),
+                        color: const Color.fromRGBO(247, 247, 247, 1.0),
                         borderRadius: BorderRadius.circular(4)),
                     width: 100,
                     child: Row(
@@ -81,7 +117,7 @@ class HouseDetails extends StatelessWidget {
                           color: Colors.grey,
                         ),
                         Text(
-                          "3 Beds",
+                          '3 Beds',
                           style: TextStyle(color: Colors.grey, fontSize: 15),
                         )
                       ],
@@ -91,16 +127,27 @@ class HouseDetails extends StatelessWidget {
               ),
             ),
             verticalSpaceSmall,
+            const Text(
+              'Listing Agent',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            verticalSpaceSmall,
+            Row(
+              children: [],
+            ),
             const Divider(),
             verticalSpaceSmall,
             Row(
               children: const [
-                Text("Owned by"),
+                Text('Owned by'),
                 horizontalSpaceTiny,
                 CircleAvatar(radius: 12),
                 horizontalSpaceSmall,
                 Text(
-                  "John Test",
+                  'John Test',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 )
               ],
@@ -123,7 +170,7 @@ class HouseDetails extends StatelessWidget {
                       size: 18,
                     ),
                     label: const Text(
-                      "Floor",
+                      'Floor',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600),
                     )),
@@ -141,7 +188,7 @@ class HouseDetails extends StatelessWidget {
                       size: 18,
                     ),
                     label: const Text(
-                      "Floor",
+                      'Floor',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600),
                     )),
@@ -159,7 +206,7 @@ class HouseDetails extends StatelessWidget {
                       size: 18,
                     ),
                     label: const Text(
-                      "Inbox",
+                      'Inbox',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600),
                     ))
@@ -169,7 +216,7 @@ class HouseDetails extends StatelessWidget {
             const Divider(),
             verticalSpaceSmall,
             const Text(
-              "Details",
+              'Details',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -177,7 +224,7 @@ class HouseDetails extends StatelessWidget {
             ),
             verticalSpaceSmall,
             const Text(
-              "Voluptate enim enim ipsum cupidatat nulla ex ex commodo pariatur reprehenderit nisi. Velit fugiat elit sit consectetur Lorem do ea aute. Ut fugiat quis exercitation sit adipisicing proident ex do nostrud consectetur commodo magna incididunt anim.",
+              'Voluptate enim enim ipsum cupidatat nulla ex ex commodo pariatur reprehenderit nisi. Velit fugiat elit sit consectetur Lorem do ea aute. Ut fugiat quis exercitation sit adipisicing proident ex do nostrud consectetur commodo magna incididunt anim.',
               style: TextStyle(fontSize: 16),
             )
           ],
@@ -193,6 +240,6 @@ Widget thumbnailItem() {
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         image: const DecorationImage(
-            image: AssetImage("assets/images/house.jpg"), fit: BoxFit.cover)),
+            image: AssetImage('assets/images/house.jpg'), fit: BoxFit.cover)),
   );
 }
