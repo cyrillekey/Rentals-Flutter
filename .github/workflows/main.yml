@@ -39,7 +39,9 @@ jobs:
           flutter build apk --flavor=staging -t lib/main_staging.dart --release
       - name: Distribute Android Beta App
         working-directory: ${{github.workspace}}/android
-        run: bundle exec fastlane distribute_beta
+        run: |
+          echo "${{secrets.FIREBASE_SERVICE_ACCOUNT}}" | base64 -d > "${{github.workspace}}/android/firebase_credentials.json"
+          bundle exec fastlane distribute_beta
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
           FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
