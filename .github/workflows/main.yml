@@ -1,3 +1,4 @@
+name: Distribute Beta Develop
 on:
   push:
     branches:
