@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  distribute_apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.0'
+          chanel: 'stable'
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7' 
+      - name: Install Android Gems
+        working-directory: ${{github.workspace}}/android
+        run: bundle install
+      - name: Install Flutter Dependencies
+        working-directory: ${{github.workspace}}
+        run: flutter pub get
+      - name: Decode and Build Apk
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICE }}" | base64 -d > android/app/google-services.json
+          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
+          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
+          echo "${{ secrets.STAGING_RELEASE }}" > keys.jks.asc
+          gpg -d --passphrase "${{ secrets.STAGING_RELEAS_PHRASE }}" --batch keys.jks.asc > android/app/upload-keystore.jks
+          flutter build apk --flavor=staging -t lib/main_staging.dart --release
+      - name: Distribute Android Beta App
+        working-directory: ${{github.workspace}}/android
+        run: bundle exec fastlane distribute_android_app
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          FIREBASE_ANDROID_APPID: ${{ secrets.FIREBASE_APP_ID }}
+          BUILD_NUMBER: ${{ secrets.ANDROID_TESTERS }}
