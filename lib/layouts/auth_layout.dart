@@ -77,10 +77,10 @@ class AuthenticationLayout extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: GestureDetector(
                 onTap: () {
-                  Get.toNamed("/password");
+                  Get.toNamed('/password');
                 },
                 child: Text(
-                  "Forgot Password ?",
+                  'Forgot Password ?',
                   style: ktsMediumGreyBodyText.copyWith(
                       fontWeight: FontWeight.bold),
                 ),
@@ -132,7 +132,7 @@ class AuthenticationLayout extends StatelessWidget {
           if (Platform.isIOS)
             AppleAuthButton(
               onPressed: () {},
-              text: "CONTINUE WITH APPLE",
+              text: 'CONTINUE WITH APPLE',
               style: const AuthButtonStyle(
                   iconSize: 24,
                   height: 50,
@@ -142,7 +142,7 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceRegular,
           GoogleAuthButton(
             onPressed: () {},
-            text: "CONTINUE WITH GOOGLE",
+            text: 'CONTINUE WITH GOOGLE',
             style: const AuthButtonStyle(
                 buttonColor: Color(0xff4285f4),
                 iconSize: 24,
@@ -154,8 +154,18 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceRegular,
           FacebookAuthButton(
             onPressed: () {},
-            text: "CONTINUE WITH GOOGLE",
+            text: 'CONTINUE WITH GOOGLE',
             style: const AuthButtonStyle(
+                iconSize: 24,
+                buttonType: AuthButtonType.secondary,
+                height: 50,
+                textStyle: TextStyle(color: Colors.white)),
+          ),
+          verticalSpaceRegular,
+          TwitterAuthButton(
+            onPressed: () {},
+            text: 'CONTINUE WITH TWITTER',
+            style: AuthButtonStyle(
                 iconSize: 24,
                 buttonType: AuthButtonType.secondary,
                 height: 50,
@@ -164,10 +174,11 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceMedium,
           if (showTermsText)
             const Text(
-              "By signing up you agree to our terms, conditions and privacy Policy.",
+              'By signing up you agree to our terms, conditions and privacy Policy.',
               style: ktsMediumGreyBodyText,
               textAlign: TextAlign.center,
             ),
+          verticalSpaceRegular
         ],
       ),
     );
